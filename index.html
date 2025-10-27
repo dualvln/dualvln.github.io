@@ -196,53 +196,6 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
 
   <main id="main-content">
   <section class="hero">
@@ -309,6 +262,18 @@
 
                   <div class="column has-text-centered">
                     <div class="publication-links">
+
+                      <!-- TODO: Update with your arXiv paper ID -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="ai ai-arxiv"></i>
+                        </span>
+                        <span>arXiv</span>
+                        </a>
+                      </span>
+
                       <!-- TODO: Update with your arXiv paper ID -->
                       <span class="link-block">
                         <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
@@ -342,14 +307,14 @@
                         </a>
                       </span>
 
-                      <!-- TODO: Update with your arXiv paper ID -->
+                      <!-- TODO: Replace with your data URL -->
                       <span class="link-block">
-                        <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                        <a href="https://github.com/YOUR REPO HERE" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
-                          <i class="ai ai-arxiv"></i>
+                          <i class="fa fa-database"></i>
                         </span>
-                        <span>arXiv</span>
+                        <span>Data</span>
                         </a>
                       </span>
             </div>
@@ -380,9 +345,17 @@
       </div>
       <br/>
       <h2 class="title is-5">TL; DR</h2>
-      <h2 class="subtitle has-text-centered" style="line-height: 1.6;">
-        We propose <b>DualVLN</b>, a dual-system foundation model: <b>System 2</b> (VLM) plans mid-term waypoints, while <b>System 1</b> (lightweight diffusion policy) executes smooth, real-time trajectories.
-      </h2>
+      <div class="content has-text-justified">
+        <p>
+          We propose <b>DualVLN</b>, a dual-system foundation model for Vision-Language Navigation, which includes:
+        <ul>
+          <li><b>System 2</b>: a large foundation VLM, performs slow but robust reasoning and produces explicit pixel goals.</li>
+          <li><b>System 1</b>: a lightweight diffusion policy, generates smooth and safe trajectories in real time.</li>
+        </ul>
+        </p>
+
+      </div>
+
     </div>
   </div>
 </section>
@@ -417,22 +390,25 @@
       <div class="row is-full-width">
         <h2 class="title is-3 has-text-centered is-size-5-mobile title-with-lines">Approach</h2>
         
-        <h3 class="title is-4 has-text-centered is-size-5-mobile">SlowFast Context Modeling</h3>
+        <h3 class="title is-4 has-text-centered is-size-5-mobile">Dual-System Design for VLN</h3>
         <!-- <img src="./static/images/overview.png" alt="method" style="width: 75%;"></img> -->
-        <img alt="overview" src="./static/images/overview.gif" onmouseover="src='./static/images/overview.png'" onmouseout="src='./static/images/overview.gif'" style="border: 2px dashed #cccccc;"/>
-        <text style="font-size: 12px; color: #666;">Overview of the StreamVLN framework. <b>Hover over the image to see a static illustration.</b></text>
-        <br/>
-        <br/>
-        <div class="content has-text-justified" style="font-size: 17px;margin: 0 auto;margin-bottom: 1em;">
+        <img alt="overview" src="./static/images/teaser.jpg" style="border: 2px dashed #cccccc;"/>
+        <text style="font-size: 12px; color: #666;">Overview of the DualVLN framework.</text>
+        
+        <div class="content has-text-justified">
           <p>
-            <b>StreamVLN</b> generates action outputs from continuous video input in an online, multi-turn dialogue manner. Built on <b>LLaVA-Video</b> as the foundational Video-LLM, we extend it for interleaved vision, language, and action modeling.
-            For both effective context modeling of long sequence and efficient computation for real-time interaction, StreamVLN has: (1) a <b>fast-streaming</b> dialogue context with a sliding-window KV cache; and (2) a <b>slow-updating</b> memory via token pruning.
+            <b>DualVLN</b> adopts a compositional architecture featuring a <b>dual-system</b> design that synergistically combines high-level instruction interpretation with low-level action execution. Specifically, DualVLN decouples the VLN pipeline into two complementary systems:
           </p>
+          <ul>
+            <li><strong>System 2:</strong> A vision-language model (VLM)-based planning module that interprets navigation instructions to predict mid-term waypoint goals through image-grounded reasoning. By predicting pixel coordinates in the image space, it effectively connects instruction understanding with spatial reasoning, enabling long-horizon navigation instruction following.</li>
+            <li><strong>System 1:</strong> A multi-modal goal-conditioned diffusion policy guided by latent plan or supported explicit goals, which generates executable short-horizon trajectories conditioned on current observations and the asynchronous latent features from System 2. It enables robust, real-time control and local decision-making in complex environments.</li>
+          </ul>
+          <!-- <p>
+            To fully unlock open-world generalization and asynchronous inference capabilities in the dual-system architecture, we design a curriculum training scheme. Initially, each system is trained separately to acquire basic navigation skills using explicit goals in a synchronized setting. Then, a joint fine-tuning phase is introduced. In this phase, we incorporate learnable tokens into System 2 as implicit midterm goals to reduce the ambiguity of pixel-based targets. 
+          </p> -->
         </div>
-        <br/>
-        <br/>
 
-        <h3 class="title is-4 has-text-centered is-size-5-mobile">Data Collection</h3>
+        <!-- <h3 class="title is-4 has-text-centered is-size-5-mobile">Data Collection</h3>
         <div class="columns is-vcentered" style="margin-top: 1.5rem;">
           <div class="column is-8">
             <div class="content has-text-justified" style="font-size: 17px; margin-bottom: 1em;">
@@ -508,15 +484,8 @@
                 <td style="border-bottom: 4px solid #333; padding: 0.75rem; text-align: center; vertical-align: middle;">Multi-turn dialog</td>
               </tr>
             </tbody>
-            <!-- <tfoot>
-              <tr>
-                <td colspan="2" style="padding-top: 0.5rem; text-align: left; font-weight: bold;">Total</td>
-                <td style="padding-top: 0.5rem; text-align: center; font-weight: bold;">1.168M</td>
-                <td style="padding-top: 0.5rem; text-align: left;"></td>
-              </tr>
-            </tfoot> -->
           </table>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -531,72 +500,144 @@
       <div class="row is-full-width has-text-centered">
         <h2 class="title is-3 is-size-5-mobile title-with-lines">Evaluation in Simulation</h2>
         
-        <h3 class="title is-4 has-text-centered is-size-5-mobile">Quantitative Results</h3>
+        <h3 class="title is-4 has-text-centered is-size-5-mobile">Quantitative Results on VLN-CE Benchmark</h3>
         <div>
-          <img src="./static/images/exp_sim.png" alt="method" style="width: 80%;"></img>
+          <img src="./static/images/tab_vlnce.png" alt="method" style="width: 80%;"></img>
         </div>
         <text style="font-size: 12px; color: #666;">Evaluation results on R2R-CE and RxR-CE benchmarks.</text>
 
-        <!-- <iframe src="static\images\image.pdf" width="800px" height="2400px"></iframe> -->
-       
         <br/>
         <br/>
-
 
         <div class="content has-text-justified" style="font-size: 17px;margin: 0 auto;margin-bottom: 1em;">
           <p>
-            We evaluate our method on two public VLN-CE benchmarks collected from Matterport3D scenes using the Habitat simulator: <b>R2R-CE</b> and <b>RxR-CE</b>. 
-            Our <b>StreamVLN</b> model achieves state-of-the-art performance among RGB-only methods both without and with extra navigation datasets, reaching <b>56.9%</b> SR and <b>51.9%</b> SPL on R2R (Val-Unseen), and <b>52.9%</b> SR and <b>46.0%</b> SPL on RxR (Val-Unseen).
+            we compare DualVLN under the VLN-CE evaluation against three representative categories of baselines:
+          </p>
+          <ul>
+            <li><strong>Multi-sensor methods</strong> methods that incorporate panoramic RGB, odometry, and depth (e.g., HPN+DN, CMA, GridMM, ETPNav);</li>
+            <li><strong>VLM-free methods</strong> trained on single first-person RGB and depth (e.g., CM2, LAW, WS-MGMap);</li>
+            <li><strong>Video-LLM based methods</strong> relying solely on single-view RGB (e.g., NaVid, MapNav, NaVILA, UniNaVid, StreamVLN).</li>
+          </ul>
+          <p>
+            With only first-person RGB inputs, DualVLN achieves substantial gains over all prior RGB-based approaches, highlighting the strength of our dual-system design.
+          </p>
+        </div>
+
+        <br/>
+        <br/>
+
+
+        <h3 class="title is-4 has-text-centered is-size-5-mobile">Quantitative Results on VLN-PE Benchmark</h3>
+        <div>
+          <img src="./static/images/tab_vlnpe.png" alt="method" style="width: 80%;"></img>
+        </div>
+        <text style="font-size: 12px; color: #666;">Evaluation results on VLN-PE benchmark.</text>
+
+        <br/>
+        <br/>
+
+        <div class="content has-text-justified" style="font-size: 17px;margin: 0 auto;margin-bottom: 1em;">
+          <p>
+            Despite not being fine-tuned on VLN-PE trajectories, DualVLN surpasses all baselines, including those trained on VLN-PE and VLM-based methods.
+          </p>
+        </div>
+
+        <br/>
+        <br/>
+
+        <h3 class="title is-4 has-text-centered is-size-5-mobile">Social-VLN Benchmark</h3>
+        <div>
+          <img src="./static/images/example_socialvln.jpg" alt="method" style="width: 100%;"></img>
+        </div>
+        <text style="font-size: 12px; color: #666;">Overview of the Social-VLN benchmark.</text>
+
+        <br/>
+        <br/>
+
+        <div>
+          <img src="./static/images/tab_socialvln.png" alt="method" style="width: 80%;"></img>
+        </div>
+        <text style="font-size: 12px; color: #666;">Comparison of DualVLN and StreamVLN on standard R2R VLN and Social-VLN.</text>
+        
+        <br/>
+        <br/>
+
+        <div class="content has-text-justified" style="font-size: 17px;margin: 0 auto;margin-bottom: 1em;">
+          <p>
+            We also introduce the first Social-VLN benchmark to evaluate navigation models on social awareness and task recovery in dynamic environments, where
+            humanoid agents are placed along task trajectories.
+          </p>
+          <p>
+            We evaluate DualVLN and StreamVLN on the Social-VLN benchmark. StreamVLN is selected as the baseline due to its low action latency, which allows it to react to dynamic obstacles to some extent.
+            As shown in Table~\ref{tab:social-vln}, both methods experience substantial performance drops — e.g., the success rate of DualVLN decreases by about 27% and that of StreamVLN by 26% compared to their results on standard VLN tasks — highlighting the increased difficulty of Social-VLN setting.          
           </p>
         </div>
 
         <br/>
 
-        <h3 class="title is-4 has-text-centered is-size-5-mobile">Vision-Language Navigation in Habitat Simulator</h3>
+        <h3 class="title is-4 has-text-centered is-size-5-mobile">VLN Evaluation Examples</h3>
 
           <div class="container is-full-width">
-      
             <div id="results-carousel" class="carousel results-carousel">
               <div class="item item-box">
-                <video poster="" id="box" autoplay controls muted loop playsinline height="100%">
-                  <source src="./static/videos/sim_0.mp4"
+                <video poster="" id="1" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/sim4.mp4"
                           type="video/mp4">
                 </video>
               </div>
               <div class="item item-drawer">
-                <video poster="" id="drawer" autoplay controls muted loop playsinline height="100%">
-                  <source src="./static/videos/sim_1.mp4"
+                <video poster="" id="1" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/sim5.mp4"
                           type="video/mp4">
                 </video>
               </div>
               <div class="item item-dustpan">
-                <video poster="" id="dustpan" autoplay controls muted loop playsinline height="100%">
-                  <source src="./static/videos/sim_2.mp4"
+                <video poster="" id="1" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/sim6.mp4"
                           type="video/mp4">
                 </video>
               </div>
               <div class="item item-fridge">
-                <video poster="" id="fridge" autoplay controls muted loop playsinline height="100%">
-                  <source src="./static/videos/sim_3.mp4"
-                          type="video/mp4">
-                </video>
-              </div>
-              <div class="item item-handover_easy">
-                <video poster="" id="handover_easy" autoplay controls muted loop playsinline height="100%">
-                  <source src="./static/videos/sim_4.mp4"
-                          type="video/mp4">
-                </video>
-              </div>
-              <div class="item item-handover">
-                <video poster="" id="handover" autoplay controls muted loop playsinline height="100%">
-                  <source src="./static/videos/sim_5.mp4"
+                <video poster="" id="1" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/sim7.mp4"
                           type="video/mp4">
                 </video>
               </div>
             </div>
-      
+    
+            <p>VLN-CE Evaluation in Habitat Simulator. Green curves are GT.</p>
           </div>
-
+          
+          <div class="container is-full-width">
+            <div id="results-carousel" class="carousel results-carousel ">
+                <video poster="" id="1" autoplay controls muted loop playsinline max-width="100px">
+                  <source src="./static/videos/VLNPE1.mp4"
+                          type="video/mp4">
+                </video>
+                <video poster="" id="2" autoplay controls muted loop playsinline max-width="100px">
+                  <source src="./static/videos/VLNPE2.mp4"
+                          type="video/mp4">
+                </video>
+                <video poster="" id="3" autoplay controls muted loop playsinline max-width="100px">
+                  <source src="./static/videos/VLNPE3.mp4"
+                          type="video/mp4">
+                </video>
+                <video poster="" id="4" autoplay controls muted loop playsinline max-width="100px">
+                  <source src="./static/videos/VLNPE4.mp4"
+                          type="video/mp4">
+                </video>
+                <video poster="" id="5" autoplay controls muted loop playsinline max-width="100px">
+                  <source src="./static/videos/VLNPE5.mp4"
+                          type="video/mp4">
+                </video>
+                <video poster="" id="6" autoplay controls muted loop playsinline max-width="100px">
+                  <source src="./static/videos/VLNPE6.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+    
+            <p>VLN-PE Evaluation with physics simulation on a Unitree H1 robot.</p>
+          </div>
       </div>
     </div>
   </div>
@@ -610,18 +651,67 @@
     
     <h2 class="title is-3 has-text-centered is-size-5-mobile title-with-lines">Real-World In-the-Wild Testing</h2>
 
-    <h3 class="title is-4 has-text-centered is-size-5-mobile">Accurate Instruction Following</h3>
+    <h3 class="title is-4 has-text-centered is-size-5-mobile">Baseline Comparison</h3>
+    <div class="columns is-centered is-vcentered">
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <video poster="" autoplay="" controls="" muted="" loop="">
+              <source src="static/videos/baseline_navila.mp4" type="video/mp4">
+            </video>
+            <div class="card-content has-text-centered">
+              <p class="title is-5">NaVILA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <video poster="" autoplay="" controls="" muted="" loop="">
+              <source src="static/videos/baseline_dualvln.mp4" type="video/mp4">
+            </video>
+            <div class="card-content has-text-centered">
+              <p class="title is-5">DualVLN</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <video poster="" autoplay="" controls="" muted="" loop="">
+              <source src="static/videos/baseline_streamvln.mp4" type="video/mp4">
+            </video>
+            <div class="card-content has-text-centered">
+              <p class="title is-5">StreamVLN</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="has-text-centered">
+      <img src="./static/images/exp_realworld.jpg" class="interpolation-image" alt="Interpolate start reference image.">
+      <text style="font-size: 12px; color: #666;">Real-World evaluation results.</text>
+    </div>
+
+    <br/>
+    <br/>
+
+    <h3 class="title is-4 has-text-centered is-size-5-mobile">Zero-Shot Transfer to Long-Horizon Navigation</h3>
     <div class="columns is-multiline">
 
       <div class="column is-half">
         <div class="card">
           <div class="card-image">
             <video controls muted loop playsinline autoplay>
-              <source src="./static/videos/home_0.mp4" type="video/mp4">
+              <source src="./static/videos/v1.mp4" type="video/mp4">
             </video>
           </div>
           <div class="card-content has-text-centered">
-            <p class="title is-5">Living Room</p>
+            <p class="title is-5">Indoor Complex Instruction Following</p>
           </div>
         </div>
       </div>
@@ -630,11 +720,11 @@
         <div class="card">
           <div class="card-image">
             <video controls muted loop playsinline autoplay>
-              <source src="./static/videos/home_1.mp4" type="video/mp4">
+              <source src="./static/videos/v2.mp4" type="video/mp4">
             </video>
           </div>
           <div class="card-content has-text-centered">
-            <p class="title is-5">Bedroom</p>
+            <p class="title is-5">Outdoor Autonomous Exploration</p>
           </div>
         </div>
       </div>
@@ -642,18 +732,17 @@
     </div>
     <br/>
 
-
-    <h3 class="title is-4 has-text-centered is-size-5-mobile">Extreme Long-Horizon VLN Tasks</h3>
+    <h3 class="title is-4 has-text-centered is-size-5-mobile">Clutter Environment Collision Avoidance</h3>
     <div class="columns is-multiline">
       <div class="column is-half">
         <div class="card">
           <div class="card-image">
             <video controls muted loop playsinline autoplay>
-              <source src="./static/videos/workspace_0.mp4" type="video/mp4">
+              <source src="./static/videos/demo_clutter1.mp4" type="video/mp4">
             </video>
           </div>
           <div class="card-content has-text-centered">
-            <p class="title is-5">Office Lobby and Work Zones</p>
+            <p><b>Instruction:</b> Walk through the <b>tables</b> and <b>chairs</b>, turn left into the café, and stop at the <b>coffee counter.</b></p>
           </div>
         </div>
       </div>
@@ -662,11 +751,11 @@
         <div class="card">
           <div class="card-image">
             <video controls muted loop playsinline autoplay>
-              <source src="./static/videos/workspace_1.mp4" type="video/mp4">
+              <source src="./static/videos/demo_clutter2.mp4" type="video/mp4">
             </video>
           </div>
           <div class="card-content has-text-centered">
-            <p class="title is-5">Workspace</p>
+            <p><b>Instruction:</b> </b> Walk through the <b>bamboo forest</b> and turn left. Reach a <b>man</b> sitting on the <b>sofa</b>.</p>
           </div>
         </div>
       </div>
@@ -674,17 +763,17 @@
     </div>
     <br/>
 
-    <h3 class="title is-4 has-text-centered is-size-5-mobile">Generalization across Diverse Scenes</h3>
+    <h3 class="title is-4 has-text-centered is-size-5-mobile">Semantics Understanding</h3>
     <div class="columns is-multiline">
       <div class="column is-half">
         <div class="card">
           <div class="card-image">
             <video controls muted loop playsinline autoplay>
-              <source src="./static/videos/mall.mp4" type="video/mp4">
+              <source src="./static/videos/demo_semantic1.mp4" type="video/mp4">
             </video>
           </div>
           <div class="card-content has-text-centered">
-            <p class="title is-5">Mall</p>
+            <p><b>Instruction:</b> Walk straight ahead, turn right after seeing the <b>billiard table</b>, and enter the room with <b>shelves</b>.          </p>
           </div>
         </div>
       </div>
@@ -693,11 +782,12 @@
         <div class="card">
           <div class="card-image">
             <video controls muted loop playsinline autoplay>
-              <source src="./static/videos/outdoor_0.mp4" type="video/mp4">
+              <source src="./static/videos/demo_semantic3.mp4" type="video/mp4">
             </video>
           </div>
           <div class="card-content has-text-centered">
-            <p class="title is-5">Outdoor Sidewalk</p>
+            <p><b>Instruction:</b>Walk out of this house and find a <b>trash bin</b>.
+            </p>
           </div>
         </div>
       </div>
@@ -706,75 +796,25 @@
         <div class="card">
           <div class="card-image">
             <video controls muted loop playsinline autoplay>
-              <source src="./static/videos/outdoor_1.mp4" type="video/mp4">
+              <source src="./static/videos/demo_semantic2.mp4" type="video/mp4">
             </video>
           </div>
           <div class="card-content has-text-centered">
-            <p class="title is-5">Outdoor Walkways</p>
+            <p><b>Instruction:</b> Enter the office area. Immediately turn left and continue straight. Then make a right turn. Stop at the <b>workstation</b> near the <b>whiteboard</b>.</p>
           </div>
         </div>
       </div>
-
-      <div class="column is-half">
-        <div class="card">
-          <div class="card-image">
-            <video controls muted loop playsinline autoplay>
-              <source src="./static/videos/outdoor_2.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="card-content has-text-centered">
-            <p class="title is-5">Outdoor Lawn and Sidewalk</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <br/>
-
-    <h3 class="title is-4 has-text-centered is-size-5-mobile">Visual Question Answering and Navigation</h3>
-    <!-- <div class="columns is-multiline is-centered" style="display: flex; flex-wrap: wrap;">
-      <div class="column is-half" style="flex: 1 0 50%; display: flex; align-items: stretch;">
-        <div class="card" style="flex: 1; display: flex; flex-direction: column;">
-          <div class="card-image" style="
-            flex-shrink: 0; /* 防止图片容器收缩 */
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            height: 300px; /* 固定高度，或根据内容自适应 */
-          ">
-            <img src="./static/images/qa.png" alt="method" style="max-width: 125%; max-height: 115%; object-fit: contain;">
-            <div class="card-content has-text-centered flex-grow">
-              <p class="title is-5">Distinguish between Mona Lisa and Einstein</p>
-            </div>
-          </div>
-        </div>
-      </div> -->
-    
-      <div class="columns is-flex is-flex-wrap-nowrap is-align-items-stretch" style="width: 100%; margin: 0;">
-        <!-- 左卡片 -->
-        <div class="column is-half" style="flex: 1; min-width: 0; padding: 0.75rem; display: flex;">
-          <div class="card" style="flex: 1; display: flex; flex-direction: column;">
-            <div class="card-image" style="flex-shrink: 0; display: flex; justify-content: center; align-items: center; height: 225px;">
-              <img src="./static/images/vqa.png" alt="method" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-            </div>
-            <div class="card-content has-text-centered" style="flex: 1;">
-              <p class="title is-6">Q: "Describe the picture on the right.</p>
-              <p class="title is-6" style="color: red;">A: "Picture of the Mona Lisa."</p>
-            </div>
-          </div>
-        </div>
       
-        <!-- 右卡片 -->
-        <div class="column is-half" style="flex: 1; min-width: 0; padding: 0.75rem; display: flex;">
-          <div class="card" style="flex: 1; display: flex; flex-direction: column;">
-            <div class="card-image">
-              <video controls muted loop playsinline autoplay style="width: 100%; height: 225px; object-fit: cover;">
-                <source src="./static/videos/visual_reasoning.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="card-content has-text-centered" style="flex: 1;">
-              <p class="title is-5">Distinguish between Mona Lisa and Einstein</p>
-            </div>
+      
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-image">
+            <video controls muted loop playsinline autoplay>
+              <source src="./static/videos/demo_semantic4.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-content has-text-centered">
+            <p><b>Instruction:</b> Walk towards the <b>orange coffee sculpture </b> and go upstairs. Then keep walking straight and turn right at the end. After that turn left and walking to the <b>man with a black umbrella</b> . Stop in front of the <b>doors with red handles</b>.</p>
           </div>
         </div>
       </div>
